@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="plugin/tom-select.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>TOM</title>
+</head>
+
+<body>
+    <main>
+        <div class="hero-banner">
+            <img src="img/pattern-create-article.png" alt="">
+        </div>
+        <div class="main-content">
+            <form action="" method="get" class="needs-validation" novalidate>
+            <div class="head">
+                <div class="container-sm d-flex align-items-center px-0 noShadow mb-3">
+                    <div class="row g-4 w-100">
+                        <div class="col-12 col-md-4 col-lg-6">
+                            <a href="#" class="text-decoration-none text-white bg-transparent">
+                                <h2 class="text-center text-md-start">Create Article</h2>
+                            </a>
+                            <nav class="breadcrumb d-flex justify-content-center justify-content-md-start">
+                                <ul class="breadcrumb text-white">
+                                    <li class="breadcrumb-item text-white" aria-current="page">Home</li>
+                                    <li class="breadcrumb-item text-white" aria-current="page">Article</li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="col-12 col-md-8 col-lg-6 d-flex align-items-center justify-content-center">
+                            <button type="submit" class="btn text-white ms-md-auto">
+                                <i class="bi bi-floppy pe-1"></i>
+                                Save as Draft
+                            </button>
+                            <button type="button" class="btn btn-outline-light px-4 py-2" data-bs-toggle="modal" data-bs-target="#preview">Preview</button>
+                            <button type="submit" class="btn btn-publish px-4 py-2 ms-3 text-white">Publish</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-sm py-4 bg-white rounded-3 content">
+                <div class="row g-4 p-3">
+                    <div class="col-12 col-md-6">
+                        <div class="mb-3">
+                            <label for="title" class="form-label fw-bold text-secondary">Article Title</label>
+                            <input type="text" class="form-control form-control-lg" name="txttitle" id="title" aria-describedby="helpId"
+                                placeholder="Add Title" required />
+                            <div class="invalid-feedback">Please enter your article</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cate" class="form-label fw-bold text-secondary">Category</label>
+                            <select id="cate" class="form-select" placeholder="Select" autocomplete="off" required>
+                                <option value="none" disabled>Select</option>
+                                <option value="Development">Development</option>
+                                <option value="Security">Cyber Security</option>
+                                <option value="IoT">Smart IoT</option>
+                            </select>
+                            <div class="invalid-feedback">Please enter your title of your article</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subcate" class="form-label fw-bold text-secondary">Sub Category</label>
+                            <select id="subcate" class="form-select" name="state[]" multiple
+                                placeholder="Select a state..." autocomplete="off" required>
+                                <option value="">Select a state...</option>
+                                <option value="travel">Travel</option>
+                                <option value="business">Business</option>
+                                <option value="sport">Sport</option>
+                                <option value="marketing" selected>Marketing</option>
+                                <option value="frontend" selected>Frontend</option>
+                                <option value="ux-ui">UX-UI Designer</option>
+                                <option value="web">Web Developer</option>
+                                <option value="mobile">Mobile Developer</option>
+                            </select>
+                            <div class="invalid-feedback">Please enter your article</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label fw-bold text-secondary">Short Description</label>
+                            <textarea class="form-control" id="description" rows="4" aria-label="description"
+                                placeholder="Add Description" style="resize: none;" required></textarea>
+                                <div class="invalid-feedback">Please add any description for your article</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="" class="form-label fw-bold text-secondary">Upload thumnail here, or Browse</label>
+                        <div
+                            class="dragNdrop rounded-3 d-flex justify-content-center align-items-center flex-column p-4">
+                            <img src="img/photo.png" alt="">
+                            <h5 class="pt-2 text-center">Drag and Drop or <span>Browse</span> Thumnail</h5>
+                            <p class="text-secondary text-center"><b>Note:</b> Only JPG, JPEG, and PNG. Our suggested
+                                dimensions are
+                                600px x 450px</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <h6 class="fw-bold text-secondary">Post body</h6>
+                        <div id="editor" class="quill"></div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="modal fade" tabindex="-1" id="preview">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title fw-bold">Preview Article</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-md">
+                            <div class="row g-4">
+                                <div class="col-12 col-lg-1 order-1 order-lg-0">
+                                    <ul class=" d-flex justify-content-center gap-5 d-lg-block">
+                                        <li class="pb-2">
+                                            <a href="#" class="text-secondary fs-4"><i class="bi bi-facebook"></i></a>
+                                        </li>
+                                        <li class="pb-2">
+                                            <a href="#" class="text-secondary fs-4"><i class="bi bi-twitter"></i></a>
+                                        </li>
+                                        <li class="pb-2">
+                                            <a href="#" class="text-secondary fs-4"><i class="bi bi-linkedin"></i></a>
+                                        </li>
+                                        <li class="pb-2">
+                                            <a href="#" class="text-secondary fs-4"><i class="bi bi-pinterest"></i></a>
+                                        </li>
+                                        <li class="pb-2">
+                                            <a href="#" class="text-secondary fs-4"><i class="bi bi-envelope"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-lg-8 order-2 order-lg-1">
+                                    <span class="badge text-success px-3 mb-2 me-3">Technology</span>
+                                    <span class="text-secondary fs-6">Updated: May 02, 2024 07:30</span>
+                                    <h3>Why you should use AVIF over JPEG, WebP, PNG and GIF</h3>
+                                    <p class="text-secondary">
+                                        Ask a quick six seven offer see among. Handsome met debating sir dwelling age
+                                        materiel. As style lived he worse dried. Offered related so visitors we private
+                                        removed.
+                                        Moderate do subjects to distance. Picture for attempt joy excited ten carried
+                                        manners
+                                        talking how. Suspicion neglected he resolving agreement perceived at an.
+                                    </p>
+                                    <img src="img/1.jpg" class="w-100" alt="">
+                                    <p class="pt-4">
+                                        At weddings believed laughing although the material does the exercise of. Up
+                                        attempt offered ye civilly so sitting
+                                        to. She new course gets living within Elinor joy. She rapturous suffering
+                                        concealed. Demesne far hearted suppose
+                                        venture excited see had has. Dependent on so extremely delivered by, Yet no
+                                        jokes worse her why. Bed one supposing
+                                        breakfast day fulfilled off depending questions. Whatever boy her exertion his
+                                        extended. Ecstatic followed handsome
+                                        drawings entirely Mrs one yet outweigh. Of acceptance insipidity remarkably is
+                                        an invitation. Comfort reached gay
+                                        perhaps chamber his six detract besides add. Moonlight newspaper up its
+                                        enjoyment agreeable depending. Timed voice
+                                        share led him to widen noisy young. At weddings believed laughing although the
+                                        material does the exercise of. Up
+                                        attempt offered ye civilly so sitting to. She new course gets living within
+                                        Elinor joy. She rapturous suffering
+                                        concealed. <br><br>
+                                        Son agreed to others Exeter period myself few yet nature. Mention Mr manners
+                                        opinion if garrets enabled. To occasional
+                                        dissimilar impossible sentiments. Do fortune account written prepare invited no
+                                        passage. Garrets use ten, you the
+                                        weather venture friends. <br><br>
+                                    <h4 class="fw-bold">Design overview</h4>
+                                    Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant
+                                    private blushes removed an in equally
+                                    totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does
+                                    chiefly cordial in do. Water timed
+                                    folly right aware if oh truth. Imprudence attachment him his for sympathize. Large
+                                    above be to means. Dashwood does
+                                    provide stronger is. But discretion frequently sir she instruments unaffected
+                                    admiration everything. Meant balls it it
+                                    up doubt small purse. Required his you put the outlived answered position. A
+                                    pleasure exertion if believed provided to.
+                                    All led out world this music while asked. Paid mind even sons does he door no.
+                                    Attended overcame repeated it is
+                                    perceived Marianne in. I think on style child of. Servants moreover in sensible it
+                                    ye possible. <br><br>
+                                    Fulfilled direction use continual set him propriety continued. Saw met applauded
+                                    favorite deficient engrossed concealed
+                                    and her. Concluded boy perpetual old supposing. Farther related bed and passage
+                                    comfort civilly. Dashwoods see frankness
+                                    objection abilities. As hastened oh produced prospect formerly up am. Placing
+                                    forming nay looking old married few has.
+                                    Margaret disposed of add screened rendered six say his striking confined.
+                                    </p>
+                                    <div class="row d-flex justify-content-between align-items-center">
+                                        <div class="col-6">
+                                            <button type="button"
+                                                class="btn btn-outline-secondary rounded-1 m-1">C++</button>
+                                            <button type="button"
+                                                class="btn btn-outline-secondary rounded-1 m-1">JavaScript</button>
+                                            <button type="button"
+                                                class="btn btn-outline-secondary rounded-1 m-1">Laravel</button>
+                                            <button type="button"
+                                                class="btn btn-outline-secondary rounded-1 m-1">Java</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <span class="text-secondary"><i class="bi bi-chat-square"></i> 0 Comments •
+                                            </span>
+                                            <span class="text-secondary"><i class="bi bi-eye"></i></i> 0 Views • </span>
+                                            <span class="text-secondary"><i class="bi bi-heart"></i> 0 Views</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-12 col-lg-3 order-0 order-lg-2">
+                                    <div class="row">
+                                        <div class="col-5 profile overflow-hidden">
+                                            <img src="img/images.jpeg" class="w-100 object-fit-cover" alt="">
+                                        </div>
+                                        <div class="col-7">
+                                            <span>Hello, I'm</span>
+                                            <h3>Sabay</h3>
+                                            <span>An editor at TOM</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-secondary">
+                                        Sabay is a senior editor for the blogzine and also reports on
+                                        breaking news based in London. He has written about government, criminal
+                                        justice,
+                                        and the role of money in politics since 2015.
+                                    </p>
+                                    <button type="button" class="btn btn-primary w-100 btn-view">View articles</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-outline-secondary " data-bs-dismiss="modal">Close
+                            Preview</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="plugin/tom-select.complete.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+    <script>
+        new TomSelect("#cate", {
+            create: true,
+            
+        });
+        new TomSelect("#subcate", {
+            maxItems: 5
+        });
+        const options = {
+            debug: 'info',
+            modules: {
+                toolbar: true,
+            },
+            placeholder: 'Compose an epic...',
+            theme: 'snow'
+        };
+        const quill = new Quill('#editor', options);
+
+        (() => {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(form => {
+              form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+          
+                form.classList.add('was-validated')
+              }, false)
+            })
+          })()
+    </script>
+</body>
+
+</html>
